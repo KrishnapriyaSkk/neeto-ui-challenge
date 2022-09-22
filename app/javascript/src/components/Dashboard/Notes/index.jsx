@@ -8,7 +8,7 @@ import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
 import DeleteAlert from "./DeleteAlert";
-import CardDiv from "./NotesCard/Cards";
+import Cards from "./NotesCard/Cards";
 import NewNotePane from "./Pane/Create";
 import SideMenu from "./SideMenu";
 
@@ -48,7 +48,7 @@ const Notes = () => {
       <SideMenu showMenu={showMenuBar} />
       <Container>
         <Header
-          menuBarToggle={() => setShowMenuBar(!showMenuBar)}
+          menuBarToggle={() => setShowMenuBar(showMenuBar => !showMenuBar)}
           title="All Notes"
           actionBlock={
             <Button
@@ -63,8 +63,8 @@ const Notes = () => {
             onChange: e => setSearchTerm(e.target.value),
           }}
         />
-        {notes.length ? (
-          notes.map(item => <CardDiv item={item} key={item.id} />)
+        {notes.length > 0 ? (
+          notes.map(item => <Cards item={item} key={item.id} />)
         ) : (
           <EmptyState
             image={EmptyNotesListImage}

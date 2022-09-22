@@ -1,10 +1,9 @@
 import dayjs from "dayjs";
-
-var relativeTime = require("dayjs/plugin/relativeTime");
+import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const requiredDateFormat = dateTime => dayjs(dateTime).format("dddd, hh:mm A");
+const dateTimeFormatter = dateTime => dayjs(dateTime).format("dddd, hh:mm A");
 const relativeCreationTime = dateTime => dayjs(dateTime).fromNow();
 
-export { requiredDateFormat, relativeCreationTime };
+export { dateTimeFormatter, relativeCreationTime };

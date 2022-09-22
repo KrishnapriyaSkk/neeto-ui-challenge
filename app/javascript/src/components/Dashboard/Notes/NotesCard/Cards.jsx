@@ -5,16 +5,19 @@ import { Tag, Tooltip, Avatar, Dropdown } from "neetoui";
 import { Header } from "neetoui/layouts";
 
 import { USER_AVATAR_URL } from "../constants";
-import { requiredDateFormat, relativeCreationTime } from "../utils";
+import { dateTimeFormatter, relativeCreationTime } from "../utils";
 
-const CardDiv = ({ item }) => (
+const { Menu, MenuItem } = Dropdown;
+const Cards = ({ item }) => (
   <div className="m-3 w-full  border border-gray-200 p-4 shadow-sm  dark:border-gray-500 dark:bg-gray-600">
     <Header
       title={item.title}
       actionBlock={
         <Dropdown buttonStyle="text" icon={MenuVertical}>
-          <li>Edit</li>
-          <li>Delete</li>
+          <Menu>
+            <MenuItem.Button>Edit</MenuItem.Button>
+            <MenuItem.Button>Delete</MenuItem.Button>
+          </Menu>
         </Dropdown>
       }
     />
@@ -30,10 +33,10 @@ const CardDiv = ({ item }) => (
       <div className="flex items-center space-x-2">
         <Clock size={13} />
         <Tooltip
-          content={requiredDateFormat(item.created_at)}
+          content={dateTimeFormatter(item.created_at)}
           position="bottom-start"
         >
-          <div> {`Drafted ${relativeCreationTime(item.created_at)}`}</div>
+          <div>{`Drafted ${relativeCreationTime(item.created_at)}`}</div>
         </Tooltip>
         <Avatar
           size="small"
@@ -46,4 +49,4 @@ const CardDiv = ({ item }) => (
   </div>
 );
 
-export default CardDiv;
+export default Cards;

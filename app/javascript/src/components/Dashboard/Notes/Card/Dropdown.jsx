@@ -5,7 +5,7 @@ import { Dropdown as NeetoUIDropdown } from "neetoui";
 
 const { Menu, MenuItem } = NeetoUIDropdown;
 
-const CardDropdown = ({ note, setShowDeleteAlert, setSelectedNoteId }) => {
+const Dropdown = ({ note, setShowDeleteAlert, setSelectedNoteId }) => {
   const handleDeleteNote = () => {
     setSelectedNoteId([note.id]);
     setShowDeleteAlert(true);
@@ -23,4 +23,4 @@ const CardDropdown = ({ note, setShowDeleteAlert, setSelectedNoteId }) => {
   );
 };
 
-export default CardDropdown;
+export default Dropdown;

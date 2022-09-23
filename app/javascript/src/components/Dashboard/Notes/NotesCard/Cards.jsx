@@ -1,28 +1,28 @@
 import React from "react";
 
-import { MenuVertical, Clock } from "neetoicons";
-import { Tag, Tooltip, Avatar, Dropdown } from "neetoui";
+import { Clock } from "neetoicons";
+import { Tag, Tooltip, Avatar, Typography } from "neetoui";
 import { Header } from "neetoui/layouts";
 
-import { USER_AVATAR_URL } from "../constants";
-import { dateTimeFormatter, relativeCreationTime } from "../utils";
+import CardDropdown from "./CardsDropdown";
+import { dateTimeFormatter, relativeCreationTime } from "./utils";
 
-const { Menu, MenuItem } = Dropdown;
-const Cards = ({ item }) => (
-  <div className="m-3 w-full  border border-gray-200 p-4 shadow-sm  dark:border-gray-500 dark:bg-gray-600">
+import { USER_AVATAR_URL } from "../constants";
+
+const Cards = ({ note, setShowDeleteAlert, setSelectedNoteId }) => (
+  <div className="m-3 w-full border border-gray-300 p-4 shadow-sm dark:border-gray-500 dark:bg-gray-600">
     <Header
-      title={item.title}
+      title={note.title}
       actionBlock={
-        <Dropdown buttonStyle="text" icon={MenuVertical}>
-          <Menu>
-            <MenuItem.Button>Edit</MenuItem.Button>
-            <MenuItem.Button>Delete</MenuItem.Button>
-          </Menu>
-        </Dropdown>
+        <CardDropdown
+          note={note}
+          setSelectedNoteId={setSelectedNoteId}
+          setShowDeleteAlert={setShowDeleteAlert}
+        />
       }
     />
-    <div className="mb-4">{`"${item.description}"`}</div>
-    <hr />
+    <p>{note.description}</p>
+    <hr className="my-2.5" />
     <div className="mt-2 flex justify-between">
       <Tag
         classname="neeto-ui-tag"
@@ -33,10 +33,12 @@ const Cards = ({ item }) => (
       <div className="flex items-center space-x-2">
         <Clock size={13} />
         <Tooltip
-          content={dateTimeFormatter(item.created_at)}
+          content={dateTimeFormatter(note.created_at)}
           position="bottom-start"
         >
-          <div>{`Drafted ${relativeCreationTime(item.created_at)}`}</div>
+          <Typography className="px-1" color="black" style="body3">
+            {`Drafted ${relativeCreationTime(note.created_at)}`}
+          </Typography>
         </Tooltip>
         <Avatar
           size="small"

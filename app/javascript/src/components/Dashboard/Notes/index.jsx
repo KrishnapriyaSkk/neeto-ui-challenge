@@ -18,7 +18,7 @@ const Notes = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [showMenuBar, setShowMenuBar] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
+  const [selectedNoteId, setSelectedNoteId] = useState([]);
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -63,8 +63,15 @@ const Notes = () => {
             onChange: e => setSearchTerm(e.target.value),
           }}
         />
-        {notes.length > 0 ? (
-          notes.map(item => <Cards item={item} key={item.id} />)
+        {notes.length ? (
+          notes.map(note => (
+            <Cards
+              key={note.id}
+              note={note}
+              setSelectedNoteId={setSelectedNoteId}
+              setShowDeleteAlert={setShowDeleteAlert}
+            />
+          ))
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -82,8 +89,8 @@ const Notes = () => {
         {showDeleteAlert && (
           <DeleteAlert
             refetch={fetchNotes}
-            selectedNoteIds={selectedNoteIds}
-            setSelectedNoteIds={setSelectedNoteIds}
+            selectedNoteIds={selectedNoteId}
+            setSelectedNoteIds={setSelectedNoteId}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}

@@ -63,7 +63,7 @@ const Notes = () => {
             onChange: e => setSearchTerm(e.target.value),
           }}
         />
-        {notes.length ? (
+        {notes.length > 0 ? (
           notes.map(note => (
             <Cards
               key={note.id}

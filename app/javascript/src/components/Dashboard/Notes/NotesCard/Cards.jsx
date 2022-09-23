@@ -4,7 +4,7 @@ import { Clock } from "neetoicons";
 import { Tag, Tooltip, Avatar, Typography } from "neetoui";
 import { Header } from "neetoui/layouts";
 
-import CardDropdown from "./CardsDropdown";
+import CardsDropdown from "./CardsDropdown";
 import { dateTimeFormatter, relativeCreationTime } from "./utils";
 
 import { USER_AVATAR_URL } from "../constants";
@@ -14,7 +14,7 @@ const Cards = ({ note, setShowDeleteAlert, setSelectedNoteId }) => (
     <Header
       title={note.title}
       actionBlock={
-        <CardDropdown
+        <CardsDropdown
           note={note}
           setSelectedNoteId={setSelectedNoteId}
           setShowDeleteAlert={setShowDeleteAlert}

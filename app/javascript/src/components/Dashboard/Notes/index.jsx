@@ -7,8 +7,8 @@ import { Container, Header } from "neetoui/layouts";
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
+import Card from "./Card";
 import DeleteAlert from "./DeleteAlert";
-import Cards from "./NotesCard/Cards";
 import NewNotePane from "./Pane/Create";
 import SideMenu from "./SideMenu";
 
@@ -65,7 +65,7 @@ const Notes = () => {
         />
         {notes.length > 0 ? (
           notes.map(note => (
-            <Cards
+            <Card
               key={note.id}
               note={note}
               setSelectedNoteId={setSelectedNoteId}

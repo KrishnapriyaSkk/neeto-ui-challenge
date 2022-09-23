@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
+import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Input, Textarea, Select } from "neetoui/formik";
 
 import notesApi from "apis/notes";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
+import {
+  CONTACT_DETAILS_DATA,
+  NOTES_FORM_VALIDATION_SCHEMA,
+  TAGS_DATA,
+} from "../constants";
 
 const NoteForm = ({ onClose, refetch, note, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -47,15 +52,42 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               className="w-full flex-grow-0"
               label="Description"
               name="description"
-              rows={8}
+              rows={2}
+            />
+            <Select
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Assigned Contact"
+              name="assignedContact"
+              placeholder="Select Contact"
+              options={CONTACT_DETAILS_DATA.map(({ id, name }) => ({
+                label: name,
+                value: id,
+              }))}
+            />
+            <Select
+              isMulti
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Tags"
+              name="tags"
+              placeholder="Select Tags"
+              options={TAGS_DATA.map(({ name, id }) => ({
+                label: name,
+                value: id,
+              }))}
             />
           </Pane.Body>
           <Pane.Footer>
             <Button
               className="mr-3"
               disabled={isSubmitting}
-              label={isEdit ? "Update" : "Save changes"}
+              icon={Check}
+              label={isEdit ? "Update" : "Save Changes"}
               loading={isSubmitting}
+              size="small"
               style="primary"
               type="submit"
               onClick={() => setSubmitted(true)}

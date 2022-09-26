@@ -2,10 +2,9 @@ import Login from "components/Authentication/Login";
 import PasswordReset from "components/Authentication/ResetPassword";
 import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
+import Contacts from "components/Dashboard/Contacts";
 import Notes from "components/Dashboard/Notes";
 import Settings from "components/Dashboard/Settings";
-
-import Contacts from "./Dashboard/Contacts";
 
 export const DASHBOARD_PATH = "/";
 export const NOTES_PATH = "/notes";

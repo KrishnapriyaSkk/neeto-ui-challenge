@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+import { buildSelectOption } from "utils/index";
+
 export const NOTES_FORM_INITIAL_FORM_VALUES = {
   title: "",
   description: "",
@@ -26,51 +28,21 @@ export const SIXTY = 60;
 export const EIGHTY = 80;
 export const TWO_HUNDRED = 200;
 
-export const CONTACT_DETAILS_DATA = [
-  {
-    id: 0,
-    name: "Ronald Richards",
-  },
-  {
-    id: 1,
-    name: "Jacob Jones",
-  },
-  {
-    id: 2,
-    name: "Ronald Jones",
-  },
-  {
-    id: 3,
-    name: "Jacob Richards",
-  },
-];
+export const CONTACT_DETAILS_DATA = buildSelectOption([
+  "Ronald Richards",
+  "Jacob Jones",
+  "Ronald Jones",
+  "Jacob Richards",
+]);
 
-export const TAGS_DATA = [
-  {
-    id: 0,
-    name: "Getting Started",
-  },
-  {
-    id: 1,
-    name: "Onboarding",
-  },
-  {
-    id: 2,
-    name: "User Flow",
-  },
-  {
-    id: 3,
-    name: "UX",
-  },
-  {
-    id: 4,
-    name: "Bugs",
-  },
-  {
-    id: 5,
-    name: "V2",
-  },
-];
+export const TAGS_DATA = buildSelectOption([
+  "Getting Started",
+  "Onboarding",
+  "User Flow",
+  "UX",
+  "Bugs",
+  "V2",
+]);
 
 export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -80,10 +52,10 @@ export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
     .shape({
       label: yup
         .string()
-        .oneOf(CONTACT_DETAILS_DATA.map(contact => contact.name)),
+        .oneOf(CONTACT_DETAILS_DATA.map(contact => contact.label)),
       value: yup
-        .number()
-        .oneOf(CONTACT_DETAILS_DATA.map(contact => contact.id)),
+        .string()
+        .oneOf(CONTACT_DETAILS_DATA.map(contact => contact.value)),
     })
     .nullable()
     .required("Assigned contact is required"),
@@ -91,8 +63,8 @@ export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
     .array()
     .of(
       yup.object().shape({
-        label: yup.string().oneOf(TAGS_DATA.map(tag => tag.name)),
-        value: yup.number().oneOf(TAGS_DATA.map(tag => tag.id)),
+        label: yup.string().oneOf(TAGS_DATA.map(tag => tag.label)),
+        value: yup.string().oneOf(TAGS_DATA.map(tag => tag.value)),
       })
     )
     .min(1, "Atleast one tag is required")

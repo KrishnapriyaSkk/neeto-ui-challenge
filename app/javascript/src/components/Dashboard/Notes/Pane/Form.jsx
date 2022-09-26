@@ -61,9 +61,9 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               label="Assigned Contact"
               name="assignedContact"
               placeholder="Select Contact"
-              options={CONTACT_DETAILS_DATA.map(({ id, name }) => ({
-                label: name,
-                value: id,
+              options={CONTACT_DETAILS_DATA.map(({ value, label }) => ({
+                label,
+                value,
               }))}
             />
             <Select
@@ -74,9 +74,9 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               label="Tags"
               name="tags"
               placeholder="Select Tags"
-              options={TAGS_DATA.map(({ name, id }) => ({
-                label: name,
-                value: id,
+              options={TAGS_DATA.map(({ value, label }) => ({
+                label,
+                value,
               }))}
             />
           </Pane.Body>

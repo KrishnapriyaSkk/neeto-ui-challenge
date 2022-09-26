@@ -4,8 +4,12 @@ import { Clock } from "neetoicons";
 import { Tag, Tooltip, Avatar, Typography } from "neetoui";
 import { Header } from "neetoui/layouts";
 
+import {
+  dateTimeFormatter,
+  relativeCreationTime,
+} from "components/Dashboard/utils";
+
 import Dropdown from "./Dropdown";
-import { dateTimeFormatter, relativeCreationTime } from "./utils";
 
 import { USER_AVATAR_URL } from "../constants";
 

@@ -7,12 +7,14 @@ import { Container, Header } from "neetoui/layouts";
 import EmptyState from "components/Common/EmptyState";
 
 import { CONTACT_DETAILS_DATA } from "./constants";
+import NewContactPane from "./Pane/NewContactPane";
 import SideMenu from "./SideMenu";
 import Table from "./Table";
 
 const Contacts = () => {
   const [showMenuBar, setShowMenuBar] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
 
   return (
     <>
@@ -25,7 +27,9 @@ const Contacts = () => {
             <Button
               icon="ri-add-line"
               label="Add New Contact"
-              onClick={() => {}}
+              onClick={() => {
+                setShowNewContactPane(true);
+              }}
             />
           }
           searchProps={{
@@ -45,6 +49,10 @@ const Contacts = () => {
             title="Looks like you don't have any contacts!"
           />
         )}
+        <NewContactPane
+          setShowPane={setShowNewContactPane}
+          showPane={showNewContactPane}
+        />
       </Container>
     </>
   );

@@ -1,3 +1,7 @@
+import * as yup from "yup";
+
+import { buildSelectOption } from "utils/index";
+
 export const CONTACT_DETAILS_DATA = [
   {
     id: 0,
@@ -38,3 +42,34 @@ export const USER_AVATAR_URL = "https://picsum.photos/id/1005/5760/3840";
 export const SIXTY = 60;
 export const EIGHTY = 80;
 export const TWO_HUNDRED = 200;
+
+export const CONTACT_FORM_INITIAL_FORM_VALUES = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  role: null,
+};
+
+export const ROLES_DATA = buildSelectOption([
+  "Owner",
+  "User",
+  "Lead",
+  "Visitor",
+]);
+
+export const CONTACT_FORM_VALIDATION_SCHEMA = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  email: yup
+    .string()
+    .email("Valid email is required")
+    .required("Email is required"),
+  role: yup
+    .object()
+    .nullable()
+    .shape({
+      label: yup.string().oneOf(ROLES_DATA.map(role => role.label)),
+      value: yup.string().oneOf(ROLES_DATA.map(role => role.value)),
+    })
+    .required("Role is required"),
+});

@@ -12,7 +12,7 @@ const camelize = str =>
     )
     .join("");
 
-export const buildSelectOption = values =>
+export const buildSelectOptions = values =>
   values.map(value => ({
     label: value,
     value: camelize(value),

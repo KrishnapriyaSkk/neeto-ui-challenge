@@ -1,10 +1,12 @@
 import * as yup from "yup";
 
-import { buildSelectOption } from "utils/index";
+import { buildSelectOptions } from "utils/index";
 
 export const NOTES_FORM_INITIAL_FORM_VALUES = {
   title: "",
   description: "",
+  assignedContact: null,
+  tags: [],
 };
 
 export const NOTES_TABLE_COLUMN_DATA = [
@@ -28,14 +30,14 @@ export const SIXTY = 60;
 export const EIGHTY = 80;
 export const TWO_HUNDRED = 200;
 
-export const CONTACT_DETAILS_DATA = buildSelectOption([
+export const CONTACT_DETAILS_DATA = buildSelectOptions([
   "Ronald Richards",
   "Jacob Jones",
   "Ronald Jones",
   "Jacob Richards",
 ]);
 
-export const TAGS_DATA = buildSelectOption([
+export const TAGS_DATA = buildSelectOptions([
   "Getting Started",
   "Onboarding",
   "User Flow",

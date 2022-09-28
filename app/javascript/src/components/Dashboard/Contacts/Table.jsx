@@ -1,13 +1,24 @@
 import React from "react";
 
 import { MenuHorizontal } from "neetoicons";
-import { Table as NeetoUITable, Avatar, Typography, Dropdown } from "neetoui";
+import {
+  Table as NeetoUITable,
+  Avatar,
+  Typography,
+  Dropdown,
+  Toastr,
+} from "neetoui";
 
 import { USER_AVATAR_URL } from "./constants";
 
 import { monthDateFormatter } from "../utils";
 
 const { Menu, MenuItem } = Dropdown;
+
+const handleDelete = onClose => {
+  Toastr.success("Contact deleted successfully");
+  onClose();
+};
 
 const renderUserDetails = (firstName, { lastName, role }) => (
   <div className="flex space-x-2">
@@ -25,7 +36,9 @@ const renderDropdownMenu = () => (
   <Dropdown buttonStyle="text" icon={MenuHorizontal}>
     <Menu>
       <MenuItem.Button>Edit</MenuItem.Button>
-      <MenuItem.Button style="danger">Delete</MenuItem.Button>
+      <MenuItem.Button style="danger" onClick={handleDelete}>
+        Delete
+      </MenuItem.Button>
     </Menu>
   </Dropdown>
 );

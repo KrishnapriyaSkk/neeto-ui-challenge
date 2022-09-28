@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { buildSelectOption } from "utils/index";
+import { buildSelectOptions } from "utils/index";
 
 export const CONTACT_DETAILS_DATA = [
   {
@@ -50,7 +50,7 @@ export const CONTACT_FORM_INITIAL_FORM_VALUES = {
   role: null,
 };
 
-export const ROLES_DATA = buildSelectOption([
+export const ROLES_DATA = buildSelectOptions([
   "Owner",
   "User",
   "Lead",

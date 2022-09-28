@@ -1,28 +1,28 @@
 import React from "react";
 
-import { Pane, Typography } from "neetoui";
+import { Pane as NeetoUIPane, Typography } from "neetoui";
 
 import Form from "./Form";
 
 import { CONTACT_FORM_INITIAL_FORM_VALUES } from "../constants";
 
-const NewContactPane = ({ showPane, setShowPane }) => {
+const Pane = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
 
   return (
-    <Pane isOpen={showPane} onClose={onClose}>
-      <Pane.Header>
+    <NeetoUIPane isOpen={showPane} onClose={onClose}>
+      <NeetoUIPane.Header>
         <Typography style="h2" weight="semibold">
           Create a new contact
         </Typography>
-      </Pane.Header>
+      </NeetoUIPane.Header>
       <Form
         contact={CONTACT_FORM_INITIAL_FORM_VALUES}
         isEdit={false}
         onClose={onClose}
       />
-    </Pane>
+    </NeetoUIPane>
   );
 };
 
-export default NewContactPane;
+export default Pane;

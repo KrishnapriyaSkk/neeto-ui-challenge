@@ -7,7 +7,7 @@ import { Container, Header } from "neetoui/layouts";
 import EmptyState from "components/Common/EmptyState";
 
 import { CONTACT_DETAILS_DATA } from "./constants";
-import NewContactPane from "./Pane/NewContactPane";
+import Pane from "./Pane";
 import SideMenu from "./SideMenu";
 import Table from "./Table";
 
@@ -49,7 +49,7 @@ const Contacts = () => {
             title="Looks like you don't have any contacts!"
           />
         )}
-        <NewContactPane
+        <Pane
           setShowPane={setShowNewContactPane}
           showPane={showNewContactPane}
         />

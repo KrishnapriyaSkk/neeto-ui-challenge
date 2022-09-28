@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { Formik, Form } from "formik";
+import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
 import { CONTACT_FORM_VALIDATION_SCHEMA, ROLES_DATA } from "../constants";
 
-const ContactForm = ({ onClose, contact, isEdit }) => {
+const Form = ({ onClose, contact, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
@@ -24,7 +24,7 @@ const ContactForm = ({ onClose, contact, isEdit }) => {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="w-full">
+        <FormikForm className="w-full">
           <Pane.Body className="space-y-6">
             <div className="flex w-full justify-between space-x-4">
               <Input
@@ -55,11 +55,8 @@ const ContactForm = ({ onClose, contact, isEdit }) => {
               className="w-full flex-grow-0"
               label="Role"
               name="role"
+              options={ROLES_DATA}
               placeholder="Select Role"
-              options={ROLES_DATA.map(({ label, value }) => ({
-                label,
-                value,
-              }))}
             />
           </Pane.Body>
           <Pane.Footer>
@@ -78,13 +75,14 @@ const ContactForm = ({ onClose, contact, isEdit }) => {
               label="Cancel"
               size="large"
               style="text"
+              type="reset"
               onClick={onClose}
             />
           </Pane.Footer>
-        </Form>
+        </FormikForm>
       )}
     </Formik>
   );
 };
 
-export default ContactForm;
+export default Form;
